@@ -12,6 +12,7 @@ const Login = () => {
           <input
             type="text"
             name="username"
+            autoComplete="username"
             placeholder="Enter your username"
             className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           />
@@ -19,6 +20,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
+            autoComplete="current-password"
             placeholder="Enter your password"
             className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           />
@@ -33,10 +35,10 @@ const Login = () => {
 
         <p className="mt-6 text-center text-sm text-gray-400">
           Don't have an account?
-          <Link to="/register" >
-          <span className="ml-1 cursor-pointer text-blue-400 hover:text-blue-300">
-            Sign Up
-          </span>
+          <Link to="/register">
+            <span className="ml-1 cursor-pointer text-blue-400 hover:text-blue-300">
+              Sign Up
+            </span>
           </Link>
         </p>
       </div>
