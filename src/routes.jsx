@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router";
 import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
 
@@ -7,7 +7,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login /> } />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
