@@ -1,6 +1,26 @@
-import {Link} from "react-router"
+import { Link } from "react-router";
+import axios from "axios";
+import { useState } from "react";
 
 const Login = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:3000/api/auth/login", {
+        username: userName,
+        password: password,
+      },{
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-950 px-4">
       <div className="w-full max-w-md rounded-2xl border border-gray-800 bg-gray-900 p-8 shadow-2xl">
@@ -10,6 +30,9 @@ const Login = () => {
 
         <form className="flex flex-col gap-5">
           <input
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
             type="text"
             name="username"
             autoComplete="username"
@@ -18,6 +41,9 @@ const Login = () => {
           />
 
           <input
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             type="password"
             name="password"
             autoComplete="current-password"
@@ -27,6 +53,7 @@ const Login = () => {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="mt-2 rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
           >
             Login

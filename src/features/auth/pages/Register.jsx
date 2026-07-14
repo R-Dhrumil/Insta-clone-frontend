@@ -1,21 +1,25 @@
+import { useState } from "react";
 import { Link } from "react-router";
+import axios from "axios"
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [message, setMessage] = useState("");
   async function handleSubmit(e) {
     e.preventDefault();
-
+    
     axios
       .post("http://localhost:3000/api/auth/register", {
         username: name,
         email: email,
         password: password,
+      },{
+        withCredentials: true
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data);  
       });
   }
 
@@ -25,8 +29,7 @@ const Register = () => {
         <h1 className="mb-8 text-center text-3xl font-bold text-white">
           Register
         </h1>
-
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <input
             onInput={(e) => {
               setName(e.target.value);
@@ -60,14 +63,6 @@ const Register = () => {
             className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            autoComplete="confirmPassword"
-            placeholder="Confirm your password"
-            className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-          />
-
           <button
             type="submit"
             className="mt-2 rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
@@ -75,7 +70,6 @@ const Register = () => {
             Register
           </button>
         </form>
-
         <p className="mt-6 text-center text-sm text-gray-400">
           Already have an account?
           <Link to="/login">
@@ -84,6 +78,7 @@ const Register = () => {
             </span>
           </Link>
         </p>
+        {message && <p style={{color:"white"}}>{message}</p>}
       </div>
     </main>
   );
