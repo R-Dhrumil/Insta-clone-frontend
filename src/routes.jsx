@@ -6,7 +6,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<h1>welcome to the app!!!</h1>}/>
         <Route path="/login" element={<Login /> } />
         <Route path="/register" element={<Register />} />
       </Routes>

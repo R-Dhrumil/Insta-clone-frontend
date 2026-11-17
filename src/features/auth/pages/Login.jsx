@@ -56,19 +56,7 @@ const Login = () => {
     // Clear errors if validation passes
     setErrors({ userName: "", password: "" });
 
-    await axios
-      .post(
-        "http://localhost:3000/api/auth/login",
-        {
-          username: userName,
-        },
-        {
-          withCredentials: true,
-        },
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
+    
   };
 
   return (
